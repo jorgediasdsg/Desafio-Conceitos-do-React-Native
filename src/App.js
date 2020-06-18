@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import {
   SafeAreaView,
@@ -10,21 +10,32 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import api from './services/api';
+
 export default function App() {
+
+  const [repositories, setRepository] = useState([]);
+
+  useEffect(() => {
+    api.get('repositories').then(response => {
+      setRepository(response.data);
+    })
+  }, [])
+
   async function handleLikeRepository(id) {
-    // Implement "Like Repository" functionality
+    // const repositories = api.get
   }
 
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
+        
         <View style={styles.repositoryContainer}>
-          <Text style={styles.repository}>Repository 1</Text>
-
+          <Text style={styles.repository}>Repository 4</Text>
           <View style={styles.techsContainer}>
             <Text style={styles.tech}>
-              ReactJS
+              React
             </Text>
             <Text style={styles.tech}>
               Node.js
@@ -40,7 +51,7 @@ export default function App() {
               3 curtidas
             </Text>
           </View>
-
+          
           <TouchableOpacity
             style={styles.button}
             onPress={() => handleLikeRepository(1)}
@@ -50,6 +61,7 @@ export default function App() {
             <Text style={styles.buttonText}>Curtir</Text>
           </TouchableOpacity>
         </View>
+
       </SafeAreaView>
     </>
   );
