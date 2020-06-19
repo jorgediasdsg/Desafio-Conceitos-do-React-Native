@@ -57,7 +57,7 @@ export default function App() {
                 />
               <View style={ styles.likesContainer }>
                 <Text
-                  style={ styles.likeText }// Remember to replace "1" below with repository ID: {`repository-likes-${repository.id}`}
+                  style={ styles.likeText }
                   testID={`repository-likes-${repository.id}`}
                 >
                  {`${repository.likes} curtidas`}
